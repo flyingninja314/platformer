@@ -18,6 +18,10 @@ public class GameScreen implements Screen {
 //        tells program the size of a tile ===> f stands for floating decimal number
         camera = new OrthographicCamera(14f, 14f);
 //        OrthographicCamera(14f, 14f) says that the camera sees 14 tiles up and 14 tiles across ===> this seats the frame
+        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+//          camera view is like a graph, so without setting camera position, the map appears in the 1st quadrant of a 4 quadrant graph (       |  x    ) and this line fixes it so that the map is on the whole screen
+//                                                                                                                                     (-------|-------)
+//                                                                                                                                     (       |       )
     }
 
     @Override
