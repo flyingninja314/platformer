@@ -2,6 +2,7 @@ package com.baezm.platformer.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -34,6 +35,11 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(0.41f, 0.41f, 0.41f, 1f);
+//        set color of clear
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+//        clears screen with the color you chose
+
         camera.update();
         renderer.setView(camera);
 //        setting camera on renderer
@@ -43,7 +49,11 @@ public class GameScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        camera.viewportWidth = 14f;
+        camera.viewportHeight = 14f * height / width;
+//        gets the correct viewport height and sets it to re-sized window size
+        camera.update();
+//        anytime you modify the camera, you have to update it
     }
 
     @Override
