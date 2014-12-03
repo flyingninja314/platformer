@@ -4,14 +4,19 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.baezm.platformer.model.Player;
 
 public class GameScreen implements Screen {
     public TiledMap map;
     public OrthogonalTiledMapRenderer renderer;
     public OrthographicCamera camera;
+
+    public SpriteBatch spriteBatch;
+    public Player player;
 
     public GameScreen() {
         map = new TmxMapLoader().load("map/level01.tmx");
@@ -30,7 +35,9 @@ public class GameScreen implements Screen {
 //          camera view is like a graph, so without setting camera position, the map appears in the 1st quadrant of a 4 quadrant graph (       |  x    ) and this line fixes it so that the map is on the whole screen
 //                                                                                                                                     (-------|-------)
 //                                                                                                                                     (       |       )
-
+        spriteBatch = new SpriteBatch();
+        player = new Player();
+//        created player and spriteBatch variable
     }
 
     @Override
@@ -45,6 +52,12 @@ public class GameScreen implements Screen {
 //        setting camera on renderer
         renderer.render();
 //        tell renderer to display itself
+
+        spriteBatch.begin();
+        player.draw(spriteBatch);
+        spriteBatch.end();
+//    controls handling of drawing on the screen -> it needs to know when to start drawing and when to stop
+//        everything that needs to be drawn by spriteBatch must be between the begin and end
     }
 
     @Override
