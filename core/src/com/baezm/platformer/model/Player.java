@@ -15,8 +15,8 @@ public class Player {
     public TextureRegion[] spriteFrames;
 
     public Player() {
-        position = new Vector2(0,0);
-//        initializing player's position to origin on game screen
+        position = new Vector2(0,4);
+//        initializing player's position to start on game screen
         spriteSheet = new Texture(Gdx.files.internal("img/aliens.png"));
 //        gets sprite sheet to make player
 
@@ -25,9 +25,9 @@ public class Player {
 
         int counter = 0;
         for(int row = 0; row < spriteSheetFrames.length; row++) {
-//            cuts spritesheet into rows
+//            cuts sprite sheet into rows
             for(int column = 0; column < spriteSheetFrames[row].length; column++) {
-//                makes row into columns
+//                cuts row into columns
                 counter++;
             }
         }
@@ -45,11 +45,13 @@ public class Player {
 
     public void draw(Batch spriteBatch) {
 //        void return type -> the function doesn't return anything, it is just executed
-        spriteBatch.draw(spriteFrames[0], 0, 0, 70, 100);
+        spriteBatch.draw(spriteFrames[0], position.x, position.y, 70 * (1/70f), 100 * (1/70f));
+//        multiply by (1/70f) to get character set to scale
     }
 
     public void update(float deltaTime) {
-
+        position.x += deltaTime;
+//        += deltaTime so that he doesn't nyoom off the screen
     }
 
 }
