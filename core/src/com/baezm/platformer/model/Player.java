@@ -2,6 +2,7 @@ package com.baezm.platformer.model;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -13,6 +14,10 @@ public class Player {
 //    image for character's sprite
 
     public TextureRegion[] spriteFrames;
+
+    public Animation animation;
+    private float stateTime;
+//
 
     public Player() {
         position = new Vector2(0,4);
@@ -41,15 +46,30 @@ public class Player {
             }
 
         }
+
+        TextureRegion[] animationFrames = new TextureRegion[2];
+//        stores the animation, allows 2 frames
+        animationFrames[0] = spriteFrames[12];
+//        index of this animationFrames is the 1st frame for walking
+        animationFrames[1] = spriteFrames[35];
+//        2nd frame is 2nd walking frame
+        animation = new Animation(.13f, animationFrames);
+//        new animation using frames in animationFrames; each frame lasts 1 second (1f)
+        stateTime = 0f;
+//        time the player has been in game
+
     }
 
     public void draw(Batch spriteBatch) {
 //        void return type -> the function doesn't return anything, it is just executed
-        spriteBatch.draw(spriteFrames[0], position.x, position.y, 70 * (1/70f), 100 * (1/70f));
+        spriteBatch.draw(animation.getKeyFrame(stateTime, true), position.x, position.y, 70 * (1/70f), 100 * (1/70f));
+//        animation.getKeyframe..... gets character animation and loops from player spawn
 //        multiply by (1/70f) to get character set to scale
     }
 
     public void update(float deltaTime) {
+        stateTime += deltaTime;
+//        updates so that the animation works
         position.x += deltaTime;
 //        += deltaTime so that he doesn't nyoom off the screen
     }
