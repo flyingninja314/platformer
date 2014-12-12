@@ -20,6 +20,7 @@ public class Player {
         spriteSheet = new Spritesheet("img/aliens.png");
 //        gets sprite sheet
         animation = spriteSheet.createAnimation();
+        animation = spriteSheet.flipAnimation(animation, true, false);
 
         stateTime = 0f;
 //        time the player has been in game
