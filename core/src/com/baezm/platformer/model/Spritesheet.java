@@ -14,12 +14,12 @@ public class Spritesheet {
 
     public Animation animation;
 
-    public Spritesheet(String pathToFile) {
+    public Spritesheet(String pathToFile, int width, int height) {
 
         spriteSheet = new Texture(Gdx.files.internal(pathToFile));
 //        gets sprite sheet to make player
 
-        TextureRegion[][] spriteSheetFrames = TextureRegion.split(spriteSheet, 70, 100);
+        TextureRegion[][] spriteSheetFrames = TextureRegion.split(spriteSheet, width, height);
 //        splits sprite sheet so that character it the full character
 
         int counter = 0;
@@ -43,7 +43,7 @@ public class Spritesheet {
 
     }
 
-    public Animation createAnimation(int first, int last, ) {
+    public Animation createAnimation(int first, int last, float frameDuration) {
 
         TextureRegion[] animationFrames = new TextureRegion[2];
 //        stores the animation, allows 2 frames
@@ -51,11 +51,16 @@ public class Spritesheet {
 //        index of this animationFrames is the 1st frame for walking
         animationFrames[1] = spriteFrames[last];
 //        2nd frame is 2nd walking frame
-        animation = new Animation(.13f, animationFrames);
+        animation = new Animation(frameDuration, animationFrames);
 //        new animation using frames in animationFrames; each frame lasts 1 second (1f)
         return animation;
 
     }
+
+    public Animation flipAnimation(Animation originalAnimation, boolean flipX, boolean flipY) {
+        int frameCount = originalAnimation.getKeyFrames().length;
+        TextureRegion[] flippedFrames = new TextureRegion[frameCount];
+
         for(int index = 0; index <= frameCount - 1; index++) { //subtract 1 from frameCount
             flippedFrames[index] = new TextureRegion(originalAnimation.getKeyFrames()[index]);
             flippedFrames[index].flip(flipX, flipY);
