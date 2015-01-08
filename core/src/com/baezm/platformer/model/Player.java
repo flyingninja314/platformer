@@ -15,19 +15,19 @@ public class Player {
     public Vector2 position;
 //    position of player -> vector2 has x and y coordinate
     public Spritesheet spriteSheet;
-    public int width;
-    public int height;
+    public float width;
+    public float height;
     public String currentAnimation;
 
     private float stateTime;
     private HashMap<String, Animation> animations;
 //    makes a table
 
-    public Player() {
+    public Player(int width, int height) {
         position = new Vector2(0,4);
 //        initializing player's position to start on game screen
-        width = 70;
-        height = 100;
+        this.width = width * (1/70f);
+        this.height = height * (1/70f);
         spriteSheet = new Spritesheet("img/aliens.png", width, height);
 //        gets sprite sheet
         animations = new HashMap<String, Animation>();
@@ -41,7 +41,7 @@ public class Player {
 //        create body in game world with type and position
 
         PolygonShape rectangleShape = new PolygonShape();
-        rectangleShape.setAsBox(width / 2f, height / 2f, new Vector2(width / 2f, height / 2f), 0f);
+        rectangleShape.setAsBox(this.width / 2f, this.height / 2f, new Vector2(this.width / 2f, this.height / 2f), 0f);
 //        create shape
 
         FixtureDef fixtureDefinition = new FixtureDef();

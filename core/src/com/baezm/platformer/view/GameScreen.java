@@ -48,7 +48,7 @@ public class GameScreen implements Screen {
 //                                                                                                                                     (       |       )
         spriteBatch = renderer.getSpriteBatch();
 //        access sprite batch associated with level map and storing it in the spriteBatch variable => draw player on the same scale as the map
-        player = new Player();
+        player = new Player(70, 100);
 //        created player and spriteBatch variable
     }
 
@@ -65,7 +65,9 @@ public class GameScreen implements Screen {
         renderer.render();
 //        tell renderer to display itself
 
-       player.update(delta);
+        player.update(delta);
+
+        gameWorld.step(1/60f, 1,1);
 
         spriteBatch.begin();
         player.draw(spriteBatch);
