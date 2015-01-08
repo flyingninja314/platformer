@@ -78,7 +78,7 @@ public class Player {
 
     public void draw(Batch spriteBatch, String currentAnimation) {
 //        void return type -> the function doesn't return anything, it is just executed
-        spriteBatch.draw(animations.get(currentAnimation).getKeyFrame(stateTime, true), position.x, position.y, width * (1/70f), width * (1/70f));
+        spriteBatch.draw(animations.get(currentAnimation).getKeyFrame(stateTime, true), position.x, position.y, width, width);
 //        animation.getKeyframe..... gets character animation and loops from player spawn
 //        multiply by (1/70f) to get character set to scale
     }
