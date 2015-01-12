@@ -14,20 +14,17 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.baezm.platformer.controller.CameraController;
 import com.baezm.platformer.controller.LevelController;
+import com.baezm.platformer.controller.PlayerController;
 import com.baezm.platformer.model.Player;
 
 public class GameScreen implements Screen {
 
 
-    public Player player;
-
 
     public GameScreen() {
         LevelController.initializeController();
         CameraController.initializeController();
-
-        player = new Player(70, 100);
-//        created player and spriteBatch variable
+        PlayerController.initializeController();
     }
 
     @Override
@@ -38,8 +35,8 @@ public class GameScreen implements Screen {
 //        clears screen with the color you chose
 
         LevelController.update(delta);
-
-        player.update(delta);
+        CameraController.update();
+        PlayerController.update(delta);
         LevelController.draw();
     }
 

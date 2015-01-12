@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 public class CameraController {
     public static OrthographicCamera camera;
 
-    float width = Gdx.graphics.getWidth();
-    float height = Gdx.graphics.getHeight();
+    static float width = Gdx.graphics.getWidth();
+    static float height = Gdx.graphics.getHeight();
 //        gets the height and width of the window so that the map isn't warped
 
     public static void initializeController() {
