@@ -1,6 +1,5 @@
 package com.baezm.platformer.model;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -8,30 +7,11 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.baezm.platformer.controller.LevelController;
-import com.baezm.platformer.view.GameScreen;
 
-import java.util.HashMap;
+public class Player extends Sprite {
 
-public class Player {
-    public Vector2 position;
-//    position of player -> vector2 has x and y coordinate
-    public Spritesheet spriteSheet;
-    public float width;
-    public float height;
-    public String currentAnimation;
-
-    private float stateTime;
-    private HashMap<String, Animation> animations;
-//    makes a table
-
-    public Player(int width, int height) {
-        position = new Vector2(0,4);
-//        initializing player's position to start on game screen
-        this.width = width * (LevelController.UNIT_SCALE);
-        this.height = height * (LevelController.UNIT_SCALE);
-        spriteSheet = new Spritesheet("img/aliens.png", width, height);
-//        gets sprite sheet
-        animations = new HashMap<String, Animation>();
+    public Player(Vector2 position, int width, int height) {
+        super(position, width, height);
 
         BodyDef bodyDefinition = new BodyDef();
         bodyDefinition.type = BodyDef.BodyType.DynamicBody;
@@ -71,23 +51,15 @@ public class Player {
         animations.put("duckleft", spriteSheet.flipAnimation(animations.get("duck"), true, false));
 
         currentAnimation = "walkleft";
-
-        stateTime = 0f;
-//        time the player has been in game
-
     }
 
-    public void draw(Batch spriteBatch, String currentAnimation) {
+    public void draw(Batch spriteBatch) {
 //        void return type -> the function doesn't return anything, it is just executed
-        spriteBatch.draw(animations.get(currentAnimation).getKeyFrame(stateTime, true), position.x, position.y, width, width);
-//        animation.getKeyframe..... gets character animation and loops from player spawn
-//        multiply by (1/70f) to get character set to scale
+        super.draw(spriteBatch);
     }
 
     public void update(float deltaTime) {
-        stateTime += deltaTime;
-//        updates so that the animation works
-
+        super.update(deltaTime);
     }
 
 }
