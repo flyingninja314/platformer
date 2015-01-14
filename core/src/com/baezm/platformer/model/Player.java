@@ -17,8 +17,8 @@ public class Player extends Sprite {
         bodyDefinition.type = BodyDef.BodyType.DynamicBody;
         bodyDefinition.position.set(position);
 
-        Body playerBody = LevelController.gameWorld.createBody(bodyDefinition);
-        playerBody.setUserData(this);
+        physicsBody = LevelController.gameWorld.createBody(bodyDefinition);
+        physicsBody.setUserData(this);
 //        create body in game world with type and position
 
         PolygonShape rectangleShape = new PolygonShape();
@@ -28,7 +28,7 @@ public class Player extends Sprite {
         FixtureDef fixtureDefinition = new FixtureDef();
         fixtureDefinition.shape = rectangleShape;
 
-        playerBody.createFixture(fixtureDefinition);
+        physicsBody.createFixture(fixtureDefinition);
         rectangleShape.dispose();
 //        attach shape to body
 

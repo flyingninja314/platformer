@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.baezm.platformer.model.Level;
-import com.baezm.platformer.model.Player;
+import com.baezm.platformer.model.Sprite;
 
 import java.util.ArrayList;
 
@@ -30,7 +30,7 @@ public class LevelController {
 //        tells program the size of a tile ===> f stands for floating decimal number
         spriteBatch = renderer.getSpriteBatch();
 //        access sprite batch associated with level map and storing it in the spriteBatch variable => draw player on the same scale as the map
-        gameWorld = new World(new Vector2(0, -10), true);
+        gameWorld = new World(new Vector2(0, 0), true);
 //        Vector2 has a negative y-value so that gravity acts downwards
         debugRenderer = new Box2DDebugRenderer();
 
@@ -61,8 +61,8 @@ public class LevelController {
         gameWorld.getBodies(worldBodies);
 
         for(Body body : worldBodies){
-            Player playerBody = (Player)body.getUserData();
-            playerBody.position = body.getPosition();
+            Sprite spriteBody = (Sprite)body.getUserData();
+            spriteBody.position = body.getPosition();
         }
     }
 
