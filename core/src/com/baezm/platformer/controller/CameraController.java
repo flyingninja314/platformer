@@ -25,4 +25,12 @@ public class CameraController {
         camera.update();
     }
 
+    public static void resize(int width, int height) {
+        camera.viewportWidth = 14f;
+        camera.viewportHeight = 14f * height / width;
+//        gets the correct viewport height and sets it to re-sized window size
+        camera.update();
+//        anytime you modify the camera, you have to update it
+    }
+
 }

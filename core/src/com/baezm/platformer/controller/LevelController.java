@@ -6,10 +6,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.baezm.platformer.model.Level;
 import com.baezm.platformer.model.Sprite;
-
-import java.util.ArrayList;
 
 public class LevelController {
     public static final float UNIT_SCALE = 1/70f;
@@ -20,7 +19,7 @@ public class LevelController {
     public static Batch spriteBatch;
 
     public static World gameWorld;
-    public static ArrayList<Body> worldBodies;
+    public static Array<Body> worldBodies;
     private static Box2DDebugRenderer debugRenderer;
 
 
